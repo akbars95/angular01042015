@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Jenkov</title>
+
+    <script src= "../js/angular.min.js"></script>
+</head>
+<body data-ng-app="myApp">
+
+<div ng-include="'header.html'"></div>
+
+<div ng-controller="myController">
+    <span>{{ myData.text }}</span>
+    <br>
+    <span>{{ myData.textF() }}</span>
+    <br>
+    <span ng-bind="myData.textFB()"></span>
+
+    <div ng-bind="myData.textHTML()"></div>
+<hr>
+    <div>
+        Form<br>
+       <label ng-show="myData.showIt"><input type="checkbox" ng-click="myData.switch()" name="optical">CD</label>
+       <label ng-hide="myData.showIt"><input type="checkbox" ng-click="myData.switch()" name="optical">DVD</label>
+    </div>
+    <hr>
+    <h2>Switch</h2>
+
+    <button ng-click="myData.clickButtonMinus()" ng-disabled="myData.isDisabledM">-</button>
+    <span ng-bind="myData.switchEx"></span>
+    <button ng-click="myData.clickButtonPlus()" ng-disabled="myData.isDisabledP">+</button>
+    <div ng-switch on="myData.switchEx">
+        <div ng-switch-when="1">Shown when switch is 1</div>
+        <div ng-switch-when="2">Shown when switch is 2</div>
+        <div ng-switch-when="25">Shown when switch is 25</div>
+        <div ng-switch-default>Shown when switch is anything else than 1 and 2</div>
+    </div>
+
+    <hr>
+    <h2>If</h2>
+    <div ng-if="myData.switchEx > 2">{{ myData.switchEx }} > 2</div>
+</div>
+
+<hr>
+<h2>Repeat</h2>
+<ol>
+    <!--<li ng-repeat="theItem in myData.items">{{ theItem.text }}}</li>-->
+    <li ng-repeat="theItem in myData.getItems()">{{theItem.text}}</li>
+</ol>
+
+<ol>
+    <li ng-repeat="(name, value) in myData.myObject">{{name}} = {{value}}</li>
+</ol>
+
+<script type="text/javascript">
+    angular.module("myApp", []).controller("myController", function($scope){
+        $scope.myData = {};
+        $scope.myData.text = "Hello";
+        $scope.myData.textF = function(){
+          return "A text from a function";
+        };
+        $scope.myData.textFB = function(){
+            return "A text from a function two";
+        };
+        $scope.myData.textHTML = function(){
+            return "A text from a function two2";
+        };
+        $scope.myData.showIt = true;
+
+        $scope.myData.switch = function(){
+            $scope.myData.showIt = !$scope.myData.showIt;
+        };
+        $scope.myData.switchEx = 0;
+        $scope.myData.isDisabledM = true;
+        $scope.myData.isDisabledP = false;
+
+        $scope.myData.clickButtonMinus = function(){
+            $scope.myData.switchEx--;
+            if($scope.myData.switchEx <= 0){
+                $scope.myData.switchEx = 0;
+                $scope.myData.isDisabledM = true;
+                $scope.myData.isDisabledP = false;
+            }else{
+                $scope.myData.isDisabledM = false;
+                $scope.myData.isDisabledP = false;
+            }
+        };
+        $scope.myData.clickButtonPlus = function(){
+            $scope.myData.switchEx++;
+            if($scope.myData.switchEx >= 25){
+                $scope.myData.switchEx = 25;
+                $scope.myData.isDisabledM = false;
+                $scope.myData.isDisabledP = true;
+            }else{
+                $scope.myData.isDisabledM = false;
+                $scope.myData.isDisabledP = false;
+            }
+        };
+
+//        $scope.myData.items = [{text: "one"}, {text: "two"}, {text: "three"}, {text: "fourth"}, {text: "five"}];
+        $scope.myData.items = [ {text : "one"}, {text : "two"}, {text : "three"} ];
+        $scope.myData.getItems = function(){
+            return this.items;
+        };
+
+        $scope.myData.myObject = { var1 : "val1", var2 : "val3", var3 : "val3"};
+
+    });
+</script>
+
+
+<div ng-include="'footer.html'"></div>
+</body>
+</body>
+</html>
