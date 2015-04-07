@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<!-- <script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script> -->
+<script src= "js/angular.min.js"></script>
+</head>
+<body>
+
+<div ng-app="myApp" ng-controller="customerCtrl">
+	<table border="1">
+		<tr>
+			<th>Name</th>
+			<th>City</th>
+			<th>Country</th>
+		</tr>
+		<tr ng-repeat="x in names | orderBy : 'Country'">
+			<td><b>{{ x.Name }}</b></td>
+			<td><span style="color: green;">{{ x.City | uppercase }}</span></td>
+			<td><span style="color: red;">{{ x.Country }}</span></td>
+		</tr>
+	</table>
+</div>
+
+<script type="text/javascript">
+	var app = angular.module('myApp', []);
+	app.controller('customerCtrl', function($scope, $http){
+		$http.get("http://www.w3schools.com/angular/customers.php").success(function(response){
+			$scope.names = response.records;
+		});
+	})
+</script>
+
+
+
+</body>
+</html>
