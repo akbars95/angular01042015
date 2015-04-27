@@ -1,4 +1,4 @@
-var phoneCatApp = angular.module('phoneCatApp', ['ngRoute', 'phonecatControllers']);
+var phoneCatApp = angular.module('phoneCatApp', ['ngRoute', 'phonecatControllers', 'phonecatFilters']);
 
 phoneCatApp.config(['$routeProvider', function($routeProvider){
     $routeProvider.when('/phones', {
