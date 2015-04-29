@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html ng-app="indexApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Index</title>
+
+    <script type="text/javascript" src="js/jsLibrary/angular.js"></script>
+    <script type="text/javascript" src="js/jsLibrary/angular-animate.js"></script>
+    <script type="text/javascript" src="js/jsLibrary/angular-resource.js"></script>
+    <script type="text/javascript" src="js/jsLibrary/angular-route.js"></script>
+    <script type="text/javascript" src="js/jsLibrary/angular-sanitize.js"></script>
+
+    <script type="text/javascript" src="js/myJS/app.js"></script>
+    <script type="text/javascript" src="js/myJS/controllers.js"></script>
+
+</head>
+<body>
+
+<div ng-controller="L1Ctrl">
+    <h1 style="text-align: center;">{{ lesson_title }}</h1>
+    <h2>{{ helloTo.title }}</h2>
+</div>
+<hr>
+
+<div ng-controller="L2Ctrl">
+    <h1 style="text-align: center;">{{ lesson_title }}</h1>
+    <h4>{{ myData.textF() }}</h4>
+    <p ng-bind="myData.textF('bind')"></p>
+    <p ng-bind-html="myData.textHTMLF('html')"></p>
+
+    <div>
+        <label><input type="checkbox" ng-click="myData.changeStateCheckBoxF()" ng-model="myData.changeStateCheckBox">{{myData.showHideText}}</label>
+        <span ng-hide="myData.changeStateCheckBox">Hide element</span>
+    </div>
+
+    <div>
+        <select name="number" ng-click="change()"><!--ng-change=""-->
+            <option selected value="{{myData.currentNumber}}">{{myData.currentNumber}}</option>
+            <option ng-repeat="curValNum in myData.numbers" ng-model="curValNum">{{ curValNum }}</option>
+        </select>
+
+        <div ng-switch on="3">
+            <h1 ng-repeat="curN in myData.numbers" ng-switch-when="2" ng-hide="true">#{{ curN }}</h1>
+            <h1 ng-switch-default>Nothing</h1>
+        </div>
+
+    </div>
+
+</div>
+<hr>
+
+</body>
+</html>
