@@ -1,0 +1,66 @@
+.phone{
+    display: block;
+    margin: 25px auto;
+}
+
+h1{
+    text-align: center;
+}
+
+p.descp{
+    width: 500px;
+    margin: 0 auto;
+}
+
+ul.phone-thumbs{
+    width: 200px;
+    display: inline;
+    margin: 0 auto;
+    overflow: auto;
+}
+
+.phone-thumbs li, .phone-thumbs li img{
+    display: inline;
+    height: 100px;
+    width: 100px;
+}
+
+.phone-thumbs li img{
+    margin-right: 10px;
+}
+
+li{
+    list-style:none;
+}
+
+ul.specs li span{
+    
+}
+
+dl.dl{
+    margin-left: 25px;
+}
+
+img.images:hover{
+    cursor: pointer;
+    border: 1px solid gray;
+    padding: 5px;
+    width: 200px;
+    height: 200px;
+}
+
+/* animation */
+.sample-show-hide {
+  padding:10px;
+  border:1px solid black;
+  background:white;
+}
+
+.sample-show-hide {
+  -webkit-transition:all linear 0.5s;
+  transition:all linear 0.5s;
+}
+
+.sample-show-hide.ng-hide {
+  opacity:0;
+}
